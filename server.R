@@ -69,14 +69,28 @@ server <- function(input, output, session) {
   generatePopupContent <- function(data) {
     # Print the name of the city
     popupContent <- paste("<strong><h5>", data$cp_ville, "</strong></h5>")
+    
     # Print the fuel and the prices associated
     for (fuel in fuels) {
       values <- data[[fuel]]
-      formatted_values <- ifelse(is.na(values), paste("<span style='color:red;'>Non disponible</span>"), paste(values, "€/L"))
-      popupContent <- paste(popupContent, "<strong>", fuel, ":</strong> ", formatted_values, "<br>", sep = " ")
+      
+      formatted_values <- ifelse(is.na(values), 
+                                 paste(
+                                   "<span style='color:red;'>
+                                   Non disponible
+                                   </span>"), 
+                                 paste(sprintf("%.3f", values), "€/L")
+                                 )
+      
+      popupContent <- paste(popupContent, "<strong>", fuel, ":</strong> ", 
+                            formatted_values, "<br>", sep = " ")
     }
+    
     # Print the occurrences of fuel stations in the city
-    popupContent <- paste(popupContent, "<br><strong>Nombre de stations:</strong> ", data[["Nombre de stations"]], "<br>")
+    popupContent <- paste(popupContent, 
+                          "<br><strong>Nombre de stations:</strong> ",
+                          data[["Nombre de stations"]], "<br>")
+    
     return(popupContent)
   }
   
