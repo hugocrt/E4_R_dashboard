@@ -1,13 +1,15 @@
+# Select the python.exe in the user's PATH
+library(reticulate)
 library(shiny)
 library(readr)
 library(dplyr)
-library(plotly)
-library(ggplot2)
 library(leaflet)
 library(htmltools)
 
+source_python("main.py")
+
 # Load CSV data
-processed_data <- read_csv("processed_data.csv")
+processed_data <- read_csv("data_processor/processed_data.csv")
 
 # Fuels selected
 fuels <- c("Gazole", "SP98", "SP95", "E85", "E10", "GPLc")
