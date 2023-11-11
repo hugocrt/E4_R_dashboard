@@ -33,6 +33,8 @@ disponible sur Git dans le but de l’avoir sur la machine locale.
 
 [Installer une version de R au moins égale à 4.3.2](https://cran.r-project.org/bin/windows/base/)
 
+[Installer la dernière version de RStudio](https://posit.co/download/rstudio-desktop/)
+
 - Par ailleurs, il faut avoir Git pour cloner le projet :
 
 [Télécharger Git](https://git-scm.com/download/win)
@@ -52,35 +54,18 @@ Cela se déroule en deux étapes :
    *git clone https://git.esiee.fr/saliorll/carangeot_sali-orliange_rds_e4.git*
    <br><br>
 
-2. Installer les packages nécessaires au programme :
-
-   Pour ce faire, ouvrez l' ’Invite de Commandes’ (vous pouvez la chercher 
-   depuis la barre de recherche windows). À l’aide de la commande ‘cd’ rejoignez
-   votre dossier ‘carangeot_sali-orliange_rds_e4’ qui 
-   correspond au dossier cloné de Git.<br><br>
-
-   Si vous rentrez la commande ‘dir’(windows, ‘ls’ pour unix) une fois dans 
-   le dossier, vous devriez voir ceci :<br><br>
-
-   ![DIR CMD WINDOWS](images/image_1.png)
-
-   <span style="color:red">⚠Si ce n’est pas le cas, assurez-vous de bien vous 
-rendre dans ce dossier avant de continuer⚠</span> <br><br>
-
-3. Installer l'IDE RStudio :
-
-    Il faut pour cela se rendre sur [le site de RStudio]
-    (https://posit.co/download/rstudio-desktop/) et télécharger la dernière 
-    version en date (cliquez sur "*[Install RStudio]()*").<br><br>
-
-4. Ouvrir le projet et installer les packages requis :
+2. Ouvrir le projet et installer les packages requis :
 
     Désormais, il est nécessaire d'ouvrir le dossier du projet au sein 
-    de RStudio. Une manière simple est de lancer le logiciel "*RStudio*", puis 
-    de suivre les indications suivantes :<br><br>
-    File > Open Project... > Chemin d'accès au fichier
-    "carangeot_sali-orliange_rds_e4.Rproj" présent dans le dossier 
-    "carangeot_sali-orliange_rds_e4".<br><br>
+    de RStudio. Une manière simple est de lancer l'invite de commande, de se 
+    rendre dans le répertoire courant du projet puis de taper la commande 
+    suivante :
+
+    > start carangeot_sali-orliange_rds_e4.Rproj
+
+    Attention à bien vous trouver à la racine du projet :<br><br>
+
+    ![ROOT](images/image_1.png)<br><br>
 
     Voici à quoi doit ressembler l'interface de RStudio une fois le projet 
     ouvert :<br><br>
@@ -97,6 +82,10 @@ rendre dans ce dossier avant de continuer⚠</span> <br><br>
     commandes suivantes pour chaque package :
 
     > install.packages("package_name")
+
+    Il faut par ailleurs ajouter les packages python pour cela :
+
+    > python -m pip install -r requirements_py.txt
 
 ## 2 - Lancer le programme R et accéder au Dashboard
 
@@ -133,7 +122,7 @@ lorsque vous avez lancé app.R.
    autres informations propres au projet.
 4. Les différentes pages sont accessibles à travers ces bouttons.
 5. Une barre de sélection pour choisir le carburant à display sur l'histogramme.
-6. L'histogramme des prix duc carburant sélectionné selon toutes les stations 
+6. L'histogramme des prix du carburant sélectionné selon toutes les stations 
    recensées dans le jeu de données.
 
 Pour les autres pages, la logique d’utilisation demeure similaire !

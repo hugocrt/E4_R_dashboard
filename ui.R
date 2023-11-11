@@ -140,11 +140,16 @@ ui <- dashboardPage(
             collapsible = FALSE,
             width = 12,
             class = "test",
-
-            infoBoxOutput("lowest_dep_Box", width = 3),
-            infoBoxOutput("highest_dep_Box", width = 3),
-            infoBoxOutput("lowest_region_Box", width = 3),
-            infoBoxOutput("highest_region_Box", width = 3)
+            
+            box(
+              infoBoxOutput("lowest_dep_Box", width = 12),
+              infoBoxOutput("highest_dep_Box", width = 12),
+            ),
+            
+            box(
+              infoBoxOutput("lowest_region_Box", width = 12),
+              infoBoxOutput("highest_region_Box", width = 12)
+            )
           )
         )
       )
