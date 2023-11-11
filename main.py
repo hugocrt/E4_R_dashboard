@@ -17,8 +17,14 @@ firefox_scraper = FirefoxScraperHolder(TARGET_URL)
 firefox_scraper.remove_cwf_existing_csvs()
 firefox_scraper.perform_scraping(CSV_ARIA_LABEL, UPDATED_DATA_DATE_NG_IF)
 
+with open("date.txt", "w") as file:
+    file.write(
+      f"Date de la dernière modification : {firefox_scraper.updated_data_date}\n" 
+    )
+
+print(firefox_scraper.updated_data_date)
+
 # Data processing
 df_holder = DataFrameHolder(firefox_scraper.csv_id)
 df_holder.process_data()
 df_holder.save_dataframe()
-
