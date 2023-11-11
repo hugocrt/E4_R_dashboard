@@ -94,59 +94,49 @@ rendre dans ce dossier avant de continuer⚠</span> <br><br>
     ![REQUIREMENTS.TXT](images/image_3.png)<br><br>
 
     Au sein de la console présente sur la deuxième image, rentrer les 
-    commandes suivantes pour chaque package :<br><br>
+    commandes suivantes pour chaque package :
 
     > install.packages("package_name")
 
 ## 2 - Lancer le programme R et accéder au Dashboard
 
-Veuillez bien attendre la fin de tous les téléchargements dans votre 
-‘Invite de Commandes’.
-Toujours dans ce terminal, entrez la commande suivante, cela permettra de lancer
-le code en charge du bon fonctionnement de l’application : 
+Il est nécessaire d'ouvrir le fichier "*app.r*" en double cliquant sur ce 
+dernier depuis le menu des fichiers en bas à droite. Ainsi, la fenêtre 
+RStudio doit ressembler à ceci :
 
-*python main.py*
+![RSTUDIO APP.R](images/image_4.png)
 
-Après quelques instants (soyez patient), vous devriez avoir ceci dans votre 
-terminal : 
+Il suffit de cliquer sur "*Run App*" afin de lancer le dashboard. Deux 
+possibilités s'ouvrent à vous :
 
-![server running CMD WINDOWS](images/image_2.png)
+1. Observer le dashboard depuis l'interface RStudio :
 
-S’il n’y a aucun problème, ouvrez http://127.0.0.1:8050/ dans un navigateur web 
-(firefox, chrome…) sans fermer votre ‘Invite de Commandes’ (le main.py a besoin 
-de tourner pour mettre à jour les données sur votre dashboard).
+![RSTUDIO APP.R](images/image_5.png)
+
+2. Observer le dashboard depuis le navigateur internet par défaut en 
+   cliquant sur le boutton "*Open in browser*" sur le dashboard de RStudio 
+   situé en haut à gauche :
+
+![RSTUDIO APP.R](images/image_6.png)
 
 ## 3 - Utiliser le Dashboard
 
-Lorsque vous ouvrez cet url, vous devriez obtenir ceci :
-
-![dashboard home](images/image_3.png)
-
 Voici quelques brèves annotations sur l’utilisation du site :
 
-![dashboard home annotated](images/image_4.png)
+![DASHBOARD HOME ANNOTATED](images/image_7.png)
 
-1. C’est la barre de navigation, dans le cadre en noir, c’est la page courante,
-à côté les autres pages disponibles. 
+1. On observe ici le menu déroulant permettant d'accéder au 4.
 2. La dernière date de mise à jour des données récupérées sur le [site du 
 gouvernement français](https://data.economie.gouv.fr/explore/dataset/prix-des-carburants-en-france-flux-instantane-v2/table/) 
-lorsque vous avez tapé la commande python main.py 
-3. Deux modes sont disponibles pour la partie 4, ‘Verrouiller’ et 
-   ‘Déverrouiller’. 
-   - Dans le premier, seuls les départements de la région sélectionnée seront 
-      disponibles et seules les villes du département sélectionné seront 
-      disponibles.
-   - Dans le second, vous pouvez accéder à TOUS les départements et TOUTES les 
-     villes de France, peu importe la région sélectionnée.
-4. Les différents menus déroulants permettant de choisir les différentes 
-  visualisations de la partie 5.
-5. Zone des différentes visualisations des données.
+lorsque vous avez lancé app.R. 
+3. Ici se trouve un popup déroulant permettant d'afficher les copyrights et 
+   autres informations propres au projet.
+4. Les différentes pages sont accessibles à travers ces bouttons.
+5. Une barre de sélection pour choisir le carburant à display sur l'histogramme.
+6. L'histogramme des prix duc carburant sélectionné selon toutes les stations 
+   recensées dans le jeu de données.
 
-Pour les autres pages, la logique d’utilisation demeure la même ! 
-
-<span style="color : red">⚠La page ‘Données Géolocalisées’ prend un petit peu 
-de temps à charger, patientez le temps que cela s’ouvre, une fois chargée, elle
-sera totalement fluide⚠</span> 
+Pour les autres pages, la logique d’utilisation demeure similaire !
 
 <span style="color : dodgerblue">Bonne exploration ٩(^ᴗ^)۶</span>
 
@@ -163,7 +153,7 @@ par ville. De cette manière, nous sommes capables de dire quelles villes
 disposent d’au moins une station et quels sont les prix pour cette zone 
 géographique.
 
-Notre analyse est faite au 2 novembre 2023, les données étant récupérées 
+Notre analyse est faite au 11 novembre 2023, les données étant récupérées 
 dynamiquement et le carburant ayant des prix très volatils et incertains ces 
 derniers temps peuvent ne plus correspondre à notre analyse. De même, à cette 
 date, les carburants disponibles sur le territoire français sont : Gazole, SP98,
@@ -181,7 +171,7 @@ données :
 
 ### Population et Répartition des Stations
 
-![piechart_reg_station](images/image_5.png)
+![piechart_reg_station](images/image_8.png)
 
 Comme indiqué dans les piecharts, il est clair que les [régions les plus 
 peuplées](https://fr.statista.com/statistiques/499848/nombre-habitants-par-region-france/)
@@ -191,54 +181,51 @@ peuplée, se classe seulement quatrième en termes de nombre de stations.
 
 ### Prix des Carburants
 
-![quick_price_view](images/image_6.png)
+![quick_price_view_Gazole](images/image_9.png)
+![quick_price_view_SP98](images/image_10.png)
+![quick_price_view_SP95](images/image_11.png)
+![quick_price_view_E85](images/image_12.png)
+![quick_price_view_E10](images/image_13.png)
+![quick_price_view_GPLc](images/image_14.png)
 
 Les régions de Corse et d'Île-de-France, ainsi que leurs départements 
 respectifs, affichent les prix les plus élevés pour les carburants. En revanche,
 les régions les moins chères ne sont pas toujours les mêmes, bien que la 
-Bretagne et les Pays de la Loire, et plus particulièrement le Finistère, 
-soient en tête du classement des moins chers. Pour la Bretagne, on pourrait 
-expliquer cela par l’hyper-concurrence sur le territoire. Pour les autres 
-départements à bas prix, il semble y avoir plus de variabilité.
+Bretagne et les Pays de la Loire, soient en tête du classement des moins chers. 
+Pour la Bretagne, on pourrait expliquer cela par l’hyper-concurrence sur le 
+territoire. Pour les autres départements à bas prix, il semble y avoir plus de 
+variabilité.
 
 ### Distribution des Carburants
 
-![histogram gasoil](images/image_7.png)
-![histogram bioethanol](images/image_8.png)
+![histogram gasoil](images/image_15.png)<br><br>
+![histogram SP95](images/image_16.png)<br><br>
+![histogram E10](images/image_17.png)<br><br>
 
-- Le Gazole, le SP98, le SP95 et le GPL présentent une distribution semblable à 
+- Le Gazole, le SP98, le SP95, E10 et le GPL présentent une distribution 
+  semblable à 
   une loi normale (contenant que peu de données). Cela se traduit par des 
   variations de prix marquées, indiquant une grande sensibilité à certains 
   facteurs. De plus, nous voyons la très grande majorité des comptages 
   excentrés sur la gauche, on comprend alors qu'il y a des grands extrêmes 
   au niveau des prix (prix extrêmement chers).
-- Les E10 et E85 quant à eux présentent une distribution avec une 
-  concentration de prix autour d'une valeur médiane, indiquant une relative 
-  stabilité des prix sur le territoire national. Les comptages sont beaucoup 
-  plus centrés, montrant néanmoins des prix extrêmes des deux côtés.
+- Le E85 quant à lui présente une distribution avec une concentration de prix 
+autour d'une valeur médiane, indiquant une relative stabilité des prix sur le 
+territoire national. Les comptages sont beaucoup plus centrés, montrant 
+néanmoins des prix extrêmes des deux côtés.
 - Les carburants sans plomb (SP98 et SP95) montrent des prix relativement 
   proches, avec un léger supplément pour le SP98.
 
 ### Accessibilité aux Stations
 
-![france map](images/image_9.png)
+![france map](images/image_18.png)
 
 La carte révèle que la diagonale du vide compte très peu de stations-service, 
 ce qui signifie qu'elles sont éloignées de nombreuses villes. L'accès à ces 
 ressources est donc plus compliqué dans ces régions. Sans surprise, les régions 
 plus peuplées ont tendance à avoir un accès bien plus simple aux stations, 
 notamment pour l’IDF, championne en la matière avec par exemple plus de 50 
-stations rien que pour Paris intra-muros. 
-
-### Desserte en Carburants par Région
-
-![quick view on price per selected areas](images/image_10.png)
-
-Les régions les mieux desservies en carburant se situent principalement 
-dans le sud de la France. <br>
-Une exception notable est la Corse, qui dispose de très peu d'options de 
-carburant, se limitant essentiellement au gazole et au SP95. <br>
-L'Île-de-France est également très bien pourvue en stations-service.
+stations rien que pour Paris intra-muros.
 
 # GUIDE DU DÉVELOPPEUR
 
@@ -246,9 +233,6 @@ L'Île-de-France est également très bien pourvue en stations-service.
 
 Dans un premier temps, il est important de notifier que pour que les codes 
 soient compréhensibles par un maximum de personnes, nous avons codé en anglais.
-
-Nous respectons au maximum les conventions 
-[pep-8](https://peps.python.org/pep-0008/)
 
 Nous ne nous attarderons pas à la compréhension totale des codes, nous 
 expliquerons juste nos choix, nos raisons et la structure logique qui encadre 
@@ -268,15 +252,19 @@ sont les prix pour cette zone géographique.
 
 Voici la structure complète du projet :
 
-![folder tree](images/image_11.png)
+![folder tree](images/image_19.png)
 
 
-Nous avons décomposé le code en 4 fichiers python :
+Nous avons décomposé le code en 3 fichiers R et 3 fichiers python :
 
-- Un fichier main.py qui appelle les 3 autres.
-- Les 3 trois autres se trouvent dans les dossiers ‘data_processor’, 
-  ‘data_visualizer’, ‘web_scraper’ et se nomment respectivement 
-  ‘data_processor.py’, ‘data_visualizer.py’, ‘web_scraper.py’. 
+1. Les fichiers Python :
+   - "**web_scraper.py**" : web scraping avec selenium
+   - "**data_processor.py**" : traitement des données avec pandas
+   - "**main.py**" : appelle des deux autres fichiers
+2. Les fichiers R :
+   - "**ui.R**" : layout du dashboard
+   - "**server.R**" : contient les fonctions et l'appelle aux fichiers pythons
+   - "**app.R**" : lance l'application
 
 Comprenons pourquoi cette structuration à travers notre main.py :
 

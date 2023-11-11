@@ -19,7 +19,8 @@ firefox_scraper.perform_scraping(CSV_ARIA_LABEL, UPDATED_DATA_DATE_NG_IF)
 
 with open("date.txt", "w") as file:
     file.write(
-      f"Date de la dernière modification : {firefox_scraper.updated_data_date}\n" 
+      f"Date de la dernière modification : {firefox_scraper.updated_data_date}"
+      f"\n"
     )
 
 print(firefox_scraper.updated_data_date)
