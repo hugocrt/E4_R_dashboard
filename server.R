@@ -6,7 +6,7 @@ library(ggplot2)
 library(reticulate)
 
 # run main.py -> un-comment for the last update !
-# source_python("main.py")
+source_python("main.py")
 
 # Load CSV data
 processed_data <- read_csv("data_processor/processed_data.csv")

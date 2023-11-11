@@ -268,9 +268,9 @@ Nous avons décomposé le code en 3 fichiers R et 3 fichiers python :
 
 Comprenons pourquoi cette structuration à travers notre main.py :
 
-![Excerpt from the module main.py](images/image_12.png)
+![Excerpt from the module main.py](images/image_20.png)
 
-Il est important de savoir qu’une grande règle lorsque l’on code, c'est 
+Il est important de savoir qu’une grande règle lorsque l’on code est de 
 ‘compartimenter’. En effet, on cherche à tout prix à fuir un [code 
 spaghetti](https://www.google.com/search?client=firefox-b-d&q=code+spaghetti).
 Il ne faut pas mélanger des parties qui n’ont pas de liens entre elles ! A 
@@ -279,14 +279,13 @@ On a donc décomposé la totalité de nos lignes de commandes en 3 modules :
 - web_scraper : récupérer les données sur le site du gouvernement
 - data_processor : traiter les données récupérées pour les rendre propres à 
   l’utilisation pour le dashboard
-- data_visualizer : utiliser les données traitées pour créer un dashboard
 
 De cette manière, si l’on disposait déjà des données, on n’aurait pas besoin 
 de web_scraper mais ça n'impacterait pas le reste de nos codes…
 
-On distingue clairement l’utilisation de nos 3 autres fichiers python après la 
+On distingue clairement l’utilisation de nos 2 autres fichiers python après la 
 déclaration de nos variables globales.
-Ces 3 autres fichiers python, aussi appelés modules, comportent chacun une 
+Ces 2 autres fichiers python, aussi appelés modules, comportent chacun une 
 classe qui elle-même contient des fonctions. Nous avons décidé de créer des 
 classes pour 2 grandes raisons :
 
@@ -304,9 +303,9 @@ notre code, car nous ne faisons pas plusieurs instances… Ici, c'est plus dans
 l’intérêt d’une compréhension rapide et d’un rangement logique.
 
 Voici un extrait de code du module ‘web_scraper.py’, de la classe 
-FirefoxScraperHolder.
+FirefoxScraperHolder.<br><br>
 
-![Excerpt from the module ‘web_scraper.py’](images/image_13.png)
+![Excerpt from the module ‘web_scraper.py’](images/image_21.png)<br><br>
 
 Cette fonction est chargée de récupérer la date de dernière mise à jour et le 
 fichier CSV. Les textes en bleu sont des fonctions, on voit bien ici 
@@ -322,32 +321,59 @@ les décorateurs @property.
 La même logique concernant l’utilisation de classe et de fonctions est appliquée
 dans les autres modules.
 
-On ajoutera quand même que pour la visualisation des données (donc dans le 
-dossier data_visualizer), nous avons ajouté un sous dossier ‘assets’, permettant
-un rangement propre pour nos images et notre fichier css. 
-Nous avons utilisé un fichier css pour réduire au maximum la duplication de code
-dans ‘data_visualizer’ et surcharger ce module. De plus, si l’on veut modifier 
-directement le style du dashboard, on pourra seulement se contenter de se 
-balader dans le css (ce fichier est complémentaire à un bootstrap).
-
 Nous sommes tout de même conscients que notre code n’est pas parfait.
 
-Par exemple, notre dashboard contient 4 pages. Il aurait fallu faire un fichier 
-python contenant les callback, méthodes, etc, associées à chaque page pour une 
-meilleure lisibilité, compartimentation et logique plutôt que d’avoir toutes 
-les pages dans notre seul fichier ‘data_visualizer.py’. Cependant, nous avons 
-privilégié le fait d’expérimenter d’autres choses, comme avec l’ajout de style 
-via le css car nous manquions de temps et l’on préférait apprendre de nouvelles 
-choses.
+N.B. Au sein du "main.py", pour faciliter la récupération de python vers R de la 
+date, nous avons écrit un fichier date.txt contenant un string avec la 
+dernière date de modification. 
+
+Désormais, comprenons pourquoi cette structuration à travers notre projet R :
+
+À l'instar du python, il n'est pas raisonnable de fournir un unique code 
+contenant à la fois le layout, les fonctions et la création du server 
+shiny dashboard simultanément. Ainsi, par souci de lisibilité, 3 fichiers 
+différents assument une tâche précise : "ui.R" -> Layout; "server.R" -> 
+Features; "app.R" -> Application.
+
+![Fichier app.R](images/image_22.png)
+
+Finalement, ce fichier est très simple et fais simplement appelle aux 
+différents fichiers qu'il prendra en paramètre.
+
+![Fichier ui.R](images/image_23.png)
+
+Le fichier 'ui.R' fait ici appelle à la library "shinydashboard" afin de 
+proposer un interface graphique simplifié. R s'adresse particulièrement aux 
+statisticiens, tout du moins plus que Python qui se prête davantage aux 
+informaticiens. Ainsi, cette librairie offre de nombreuses ressources 
+visuelles afin d'obtenir un dashboard aisément. La page est composée d'un 
+header, d'une sideBar et enfin d'un body !
+
+![Fichier server.R](images/image_24.png)
+
+Ce dernier fichier "server.R" contient l'essence des graphiques et données 
+proposés. Un point majeur est la compilation du code python par la library
+"reticulate" afin de récupérer les données dynamiquement ainsi que la date. 
+
+Puis, il contient toutes les fonctions requises afin de créer les histogrammes, 
+les pies charts, la carte ou encore les infoBox. Globalement, le 
+fonctionnement des fonctions se déorule de la sorte : 
+
+"typeOutput("id_ouput")" (e.g : infoBoxOutput("lowest_dep_Box", width = 3)
+) au sein de "ui.r" 
+
+"output$id_output" (e.g : "output$lowest_dep_Box") au sein de "server.R"
+
+Voici le résultat : 
+
+![Exemple input/ouput](images/image_25.png)
 
 ## 3 - CONTINUER LE DÉVELOPPEMENT
 
 Voici rapidement quelques idées d’ajouts, ou axes d’améliorations :
 
-- Doctests : rédiger les doctests (on ne l'a pas fait par manque de temps).
-- Carte : sélection d’une zone géographique, d’un carburant… 
-- Dashboard : scinder l'app en plusieurs fichiers : une page = un fichier, 
-avec ses propres callbacks…
+- Ajouter de nouvelles infoboxs avec davantage d'informations sur les prix
+- Carte : sélection d’une zone géographique, d’un carburant…
 - Comparaison de deux villes, régions…
 - Montrer la station la moins chère dans une zone géographique (ex 
 Champs-sur-Marne dans un cercle de 10 km pour une maj de moins de 3j… )
