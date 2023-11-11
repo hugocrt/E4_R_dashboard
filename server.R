@@ -3,7 +3,6 @@ library(readr)
 library(dplyr)
 library(leaflet)
 library(ggplot2)
-library(htmltools)
 library(reticulate)
 
 # run main.py -> un-comment for the last update !
@@ -63,7 +62,7 @@ server <- function(input, output, session) {
       xlim = c(x_min, x_max),
       col = "lightblue",
       border = "black",
-      breaks = 30
+      breaks = min(30, length(unique(data)))
     )
   })
   
@@ -117,11 +116,8 @@ server <- function(input, output, session) {
                          minZoom = 5)
       ) %>%
       addMarkers(
-        # Points to display
         data = points(),
-        # Allow clustering
         clusterOptions = markerClusterOptions(),
-        # Content when clicking on Popup
         popup = ~generatePopupContent(processed_data)
       ) %>%
       setMaxBounds(lng1 = -20,lat1 = 33,lng2 = 24,lat2 = 55)

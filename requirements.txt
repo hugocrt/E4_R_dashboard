@@ -1,0 +1,7 @@
+"shiny"
+"readr"
+"dplyr"
+"leaflet"
+"ggplot2"
+"reticulate"
+"shinydashboard"
